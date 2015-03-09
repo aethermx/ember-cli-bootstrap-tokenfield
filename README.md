@@ -1,6 +1,6 @@
-# Ember-cli-bootstrap-tokenfield
+# ember-cli-bootstrap-tokenfield
 
-This README outlines the details of collaborating on this Ember addon.
+Bootstrap Tokenfield for Ember CLI
 
 ## Installation
 
