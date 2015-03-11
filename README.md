@@ -1,5 +1,7 @@
 # ember-cli-bootstrap-tokenfield
 
+[![Build Status](https://travis-ci.org/aethermx/ember-cli-bootstrap-tokenfield.svg?branch=master)](https://travis-ci.org/aethermx/ember-cli-bootstrap-tokenfield)
+
 Bootstrap Tokenfield for Ember CLI
 
 ## Addon Install 
