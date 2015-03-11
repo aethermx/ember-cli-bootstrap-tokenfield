@@ -15,8 +15,8 @@ module.exports = {
     app.import('bower_components/jquery-ui/themes/base/jquery-ui.css');
 
     // Bootstrap Tokenfield 
-    app.import('bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css');
     app.import('bower_components/bootstrap-tokenfield/dist/css/tokenfield-typeahead.css');
+    app.import('bower_components/bootstrap-tokenfield/dist/css/bootstrap-tokenfield.css');
     app.import('bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield.js');
     app.import('bower_components/bootstrap-tokenfield/docs-assets/js/typeahead.bundle.js');
   }
