@@ -1,3 +1,15 @@
 <h2 id="title">Welcome to Ember.js</h2>
 
 {{outlet}}
+
+<input type="text" class="form-control" id="tokenfield" value="red,green,blue"/>
+
+<script>
+$('#tokenfield').tokenfield({
+  autocomplete: {
+    source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
+    delay: 100
+  },
+  showAutocompleteOnFocus: true
+})
+</script>

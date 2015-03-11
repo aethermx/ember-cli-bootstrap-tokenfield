@@ -2,6 +2,15 @@
 
 Bootstrap Tokenfield for Ember CLI
 
+## Addon Install 
+
+    ember install:addon ember-cli-bootstrap-tokenfield
+
+## Addon dependencies
+
+The addon already downloads Bootstrap, but it imports only the CSS. Fonts and
+JS components will still be required to be imported by you, if you need them. 
+
 ## Installation
 
 * `git clone` this repository
@@ -23,3 +32,11 @@ Bootstrap Tokenfield for Ember CLI
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## Legal
+
+[Æther](http://aether.mx/)
+
+hello@aether.mx
+
+[Licensed under the MIT license](http://opensource.org/licenses/mit-license.php)

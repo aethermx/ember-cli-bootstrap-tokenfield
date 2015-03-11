@@ -22,7 +22,6 @@
     "ember-cli": "0.2.0",
     "ember-cli-app-version": "0.3.2",
     "ember-cli-babel": "^4.0.0",
-    "ember-cli-content-security-policy": "0.3.0",
     "ember-cli-dependency-checker": "0.0.8",
     "ember-cli-htmlbars": "0.7.4",
     "ember-cli-ic-ajax": "0.1.1",
@@ -33,7 +32,12 @@
     "ember-export-application-global": "^1.0.2"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "tokenfield",
+    "tags",
+    "token",
+    "typeahead",
+    "autocomplete"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
