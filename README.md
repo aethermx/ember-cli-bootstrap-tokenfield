@@ -4,6 +4,8 @@
 
 A convenient component that wraps around Bootstrap Tokenfield.
 
+Examples: http://aethermx.github.io/ember-cli-bootstrap-tokenfield/
+
 ## Addon Install 
 
     ember install:addon ember-cli-bootstrap-tokenfield
