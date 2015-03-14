@@ -26,4 +26,13 @@ app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.e
 app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
                    { destDir: 'fonts' });
 
+// Use Typeahead
+app.import('bower_components/typeahead.js/dist/typeahead.jquery.js');
+
+// Use Bloodhound
+app.import('bower_components/typeahead.js/dist/bloodhound.js');
+app.import('bower_components/typeahead.js-es6-shim/typeahead-shim.js', {
+  exports: { 'bloodhound': ['default'] }
+});
+
 module.exports = app.toTree();
