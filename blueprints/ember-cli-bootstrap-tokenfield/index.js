@@ -19,6 +19,7 @@ module.exports = {
     
     console.log('Note: bootstrap-tokenfield depends on jquery 2.1.0');
     console.log('      Use that.');
+
     return _this.addBowerPackageToProject('jquery', '2.1.0').then(function() {
       return _this.addBowerPackageToProject('jquery-ui', '1.11.4').then(function() {
         return _this.addBowerPackageToProject('bootstrap-tokenfield');

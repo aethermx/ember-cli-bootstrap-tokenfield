@@ -21,6 +21,19 @@ export default Ember.Controller.extend({
     engine.initialize();
 
     return [null, { source: engine.ttAdapter() }];
-  })()
+  })(),
+
+  autocompletePromise: function() {
+    var autocomplete = {
+      source: ['banana','apple','watermelon','pear','grape','peach','mango'],
+      delay: 100
+    };
+  
+    return new Ember.RSVP.Promise(function(resolve) {
+      Ember.run.later(function() {
+        resolve( autocomplete );
+      }, 3000); // simulate a 3 seconds delay 
+    });
+  }.property()
 
 });

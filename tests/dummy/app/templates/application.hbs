@@ -17,61 +17,12 @@
       </code>
 
       <h2 id="examples">Examples</h2>
-      <p>Create elegant taggable fields with copy/paste and keyboard support.</p>
 
-      <p><strong>Using jQuery UI Autocomplete</strong></p>
+      {{partial 'autocomplete'}}
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          {{input-tokenfield value="red,green,blue" 
-                             placeholder="Type something and hit enter"
-                             autocomplete=autocomplete
-                             showAutocompleteOnFocus=true}}
-        </div>
-        <div class="panel-footer">
-          Controller
-          <pre>autocomplete: {
-  source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
-  delay: 100
-}</pre>
-          Template
-          <pre>\{{input-tokenfield value="red,green,blue" 
-                   placeholder="Type something and hit enter"
-                   autocomplete=autocomplete
-                   showAutocompleteOnFocus=true}}</pre>
-        </div>
-      </div>
+      {{partial 'autocomplete-promise'}}
 
-      <p><strong>Using Twitter Typeahead</strong></p>
-
-      <div class="panel panel-default">
-        <div class="panel-body">
-          {{input-tokenfield value="red,green,blue"
-                             placeholder="Type something and hit enter"
-                             typeahead=typeahead}}
-        </div>
-        <div class="panel-footer">
-          Controller
-          <pre>typeahead: (function() {
-  var engine = new Bloodhound({
-    local: [{value: 'red'}, {value: 'blue'}, {value: 'green'} , 
-            {value: 'yellow'}, {value: 'violet'}, {value: 'brown'}, 
-            {value: 'purple'}, {value: 'black'}, {value: 'white'}],
-    datumTokenizer: function(d) {
-      return Bloodhound.tokenizers.whitespace(d.value);
-    },
-    queryTokenizer: Bloodhound.tokenizers.whitespace
-  });
-  engine.initialize();
-
-  return [null, { source: engine.ttAdapter() }];
-})()</pre>
-            Template
-          <pre>\{{input-tokenfield value="red,green,blue"
-                   placeholder="Type something and hit enter"
-                   typeahead=typeahead}}</pre>
-        </div>
-      </div>
+      {{partial 'typeahead'}}
 
     </div><!-- col -->
   </div><!-- row -->

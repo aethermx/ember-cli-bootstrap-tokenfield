@@ -6,16 +6,24 @@ export default Ember.TextField.extend({
 
   classNames: ['form-control'],
 
-  didInsertElement: function() {
+  _setElement$: function() {
+    var element$ = Ember.$('#' + this.get('elementId'));
+    this.set('element$', element$);
+  },
 
-    var id = this.get('elementId');
+  autocomplete: null, // handled by _processAutocompleteObject()
+
+  didInsertElement: function() {
+    this._setElement$();
+
+    var autocomplete = this._processAutocompleteObject();
 
     var options = {};
     if ( this.tokens ) { options.tokens = this.tokens; }
     if ( this.limit ) { options.limit = this.limit; }
     if ( this.minLength ) { options.minLength = this.minLength; }
     if ( this.minWidth ) { options.minWidth = this.minWidth; }
-    if ( this.autocomplete ) { options.autocomplete = this.autocomplete; }
+    if ( autocomplete ) { options.autocomplete = autocomplete; }
     if ( this.showAutocompleteOnFocus ) {
       options.showAutocompleteOnFocus = true;
     }
@@ -26,7 +34,26 @@ export default Ember.TextField.extend({
     if ( this.delimiter ) { options.delimiter = this.delimiter; }
     if ( this.beautify ) { options.beautify = this.beautify; }
     if ( this.inputType ) { options.inputType = this.inputType; }
-    Ember.$('#' + id).tokenfield(options);
-  }
+
+    this.get('element$').tokenfield(options);
+  },
+
+  _processAutocompleteObject: function() {
+    var autocomplete = this.get('autocomplete');
+
+    if ( ! autocomplete || typeof autocomplete.then !== 'function') {
+      return autocomplete;
+    }
+
+    var _this = this;
+    autocomplete.then(function(resolvedAutocomplete) {
+      _this.get('element$')
+           .data('bs.tokenfield')
+           .$input.autocomplete(resolvedAutocomplete);
+    });
+
+    return null;
+  }.observes('autocomplete')
 
 });
+

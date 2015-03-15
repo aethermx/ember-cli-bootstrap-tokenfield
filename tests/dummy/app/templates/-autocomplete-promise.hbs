@@ -1,0 +1,34 @@
+
+<p><strong>Autocomplete with a promise</strong></p>
+
+<p>Promises can be used to update the autocomplete object used by jQuery UI.</p>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    {{input-tokenfield value="banana,apple,watermelon" 
+                       placeholder="Type something and hit enter"
+                       autocomplete=autocompletePromise
+                       showAutocompleteOnFocus=true}}
+  </div>
+  <div class="panel-footer">
+    Controller
+    <pre>// contribed example, this data is likely to come from ember-data
+autocompletePromise: {
+  var autocomplete = {
+    source: ['banana','apple','watermelon','pear','grape','peach','mango'],
+    delay: 100
+  };
+
+  return new Ember.RSVP.Promise(function(resolve) {
+    Ember.run.later(function() {
+      resolve( autocomplete );
+    }, 3000); // simulate a 3 seconds delay 
+  });
+}.property()</pre>
+    Template
+<pre>\{{input-tokenfield value="banana,apple,watermelon" 
+                   placeholder="Type something and hit enter"
+                   autocomplete=autocompletePromise
+                   showAutocompleteOnFocus=true}}</pre>
+  </div>
+</div>
