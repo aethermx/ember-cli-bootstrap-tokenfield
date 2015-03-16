@@ -11,15 +11,17 @@ export default Ember.TextField.extend({
     this.set('element$', element$);
   },
 
+  tokens: null, 
   autocomplete: null, // handled by _processAutocompleteObject()
 
   didInsertElement: function() {
     this._setElement$();
 
+    var tokens = this._processTokensObject();
     var autocomplete = this._processAutocompleteObject();
 
     var options = {};
-    if ( this.tokens ) { options.tokens = this.tokens; }
+    if ( tokens ) { options.tokens = tokens; }
     if ( this.limit ) { options.limit = this.limit; }
     if ( this.minLength ) { options.minLength = this.minLength; }
     if ( this.minWidth ) { options.minWidth = this.minWidth; }
@@ -53,7 +55,23 @@ export default Ember.TextField.extend({
     });
 
     return null;
-  }.observes('autocomplete')
+  }.observes('autocomplete'),
+
+  _processTokensObject: function() {
+    var tokens = this.get('tokens');
+
+    if ( ! tokens ) {
+      return;
+    }
+
+    // test for Ember.ArrayProxy
+    if ( typeof tokens.get('hasArrayObservers') === 'boolean') {
+      tokens = tokens.toArray();
+    }
+
+    this.get('element$').tokenfield('setTokens', tokens);
+    
+    return tokens;
+  }.observes('tokens', 'tokens.[]')
 
 });
-
