@@ -1,6 +1,8 @@
 # ember-cli-bootstrap-tokenfield
 
-[![Build Status](https://travis-ci.org/aethermx/ember-cli-bootstrap-tokenfield.svg?branch=master)](https://travis-ci.org/aethermx/ember-cli-bootstrap-tokenfield) [![Ember Observer Score](http://emberobserver.com/badges/ember-cli-bootstrap-tokenfield.svg)](http://emberobserver.com/addons/ember-cli-bootstrap-tokenfield)
+[![Build Status](https://travis-ci.org/aethermx/ember-cli-bootstrap-tokenfield.svg?branch=master)](https://travis-ci.org/aethermx/ember-cli-bootstrap-tokenfield)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-cli-bootstrap-tokenfield.svg)](http://emberobserver.com/addons/ember-cli-bootstrap-tokenfield)
+[![Code Climate](https://codeclimate.com/github/aethermx/ember-cli-bootstrap-tokenfield/badges/gpa.svg)](https://codeclimate.com/github/aethermx/ember-cli-bootstrap-tokenfield)
 
 A convenient component that wraps around Bootstrap Tokenfield.
 
@@ -8,6 +10,8 @@ Examples: http://aethermx.github.io/ember-cli-bootstrap-tokenfield/
 
 ## Addon Install 
 
+    ember install ember-cli-bootstrap-tokenfield
+    # if ember-cli <= 0.2.2
     ember install:addon ember-cli-bootstrap-tokenfield
 
 ## Addon dependencies
