@@ -1,30 +1,33 @@
 module.exports = {
   scenarios: [
     {
-      name: 'Ember 1.10 with ember-data',
+      name: 'default',
+      dependencies: { }
+    },
+    {
+      name: 'ember-release',
       dependencies: {
-        'ember': '1.10.0',
-        'ember-data': '1.0.0-beta.15'
+        'ember': 'components/ember#release'
+      },
+      resolutions: {
+        'ember': 'release'
       }
     },
     {
-      name: 'Ember 1.11.0-beta.5',
-      dependencies: {
-        'ember': '1.11.0-beta.5'
-      }
-    },
-    {
-      name: 'Ember canary',
-      dependencies: {
-        'ember': 'canary'
-      }
-    },
-    {
-      name: 'Ember beta',
+      name: 'ember-beta',
       dependencies: {
         'ember': 'components/ember#beta'
       },
-      resolutions: { // Resolutions are only necessary when they do not match the version specified in `dependencies`
+      resolutions: {
+        'ember': 'beta'
+      }
+    },
+    {
+      name: 'ember-canary',
+      dependencies: {
+        'ember': 'components/ember#canary'
+      },
+      resolutions: {
         'ember': 'canary'
       }
     }

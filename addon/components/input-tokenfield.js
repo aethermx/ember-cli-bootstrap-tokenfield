@@ -40,7 +40,7 @@ export default Ember.TextField.extend({
     this.get('element$').tokenfield(options);
   },
 
-  _processAutocompleteObject: function() {
+  _processAutocompleteObject: Ember.observer('autocomplete', function() {
     var autocomplete = this.get('autocomplete');
 
     if ( ! autocomplete || typeof autocomplete.then !== 'function') {
@@ -55,9 +55,9 @@ export default Ember.TextField.extend({
     });
 
     return null;
-  }.observes('autocomplete'),
+  }),
 
-  _processTokensObject: function() {
+  _processTokensObject: Ember.observer('tokens', 'tokens.[]', function() {
     var tokens = this.get('tokens');
 
     if ( ! tokens ) {
@@ -72,6 +72,6 @@ export default Ember.TextField.extend({
     this.get('element$').tokenfield('setTokens', tokens);
     
     return tokens;
-  }.observes('tokens', 'tokens.[]')
+  })
 
 });
