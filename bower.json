@@ -2,7 +2,7 @@
   "name": "ember-cli-bootstrap-tokenfield",
   "dependencies": {
     "jquery": "~2.1.0",
-    "ember": "1.10.0",
+    "ember": "1.12.0",
     "ember-resolver": "~0.1.12",
     "loader.js": "ember-cli/loader.js#3.2.0",
     "ember-cli-shims": "ember-cli/ember-cli-shims#0.0.3",
@@ -13,9 +13,7 @@
     "qunit": "~1.17.1",
     "bootstrap-tokenfield": "~0.12.1",
     "jquery-ui": "~1.11.3",
-    "typeahead.js-es6-shim": "0.0.0"
-  },
-  "devDependencies": {
-    "typeahead.js": "~0.10.5"
+    "typeahead.js-es6-shim": "0.11.1",
+    "typeahead.js": "~0.11.1"
   }
 }
