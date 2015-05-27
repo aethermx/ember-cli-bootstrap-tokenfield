@@ -19,3 +19,22 @@ test('it renders', function(assert) {
   this.render();
   assert.equal(component._state, 'inDOM');
 });
+
+test('getTokens', function(assert) {
+  assert.expect(2);
+  var component = this.subject({
+    value: 'red'
+  });
+  this.render();
+
+  var active = false;
+  var element$ = component.get('element$');
+  var tokens = element$.tokenfield('getTokens', active);
+  var expected = [{'label': 'red', 'value': 'red'}];
+  assert.deepEqual(tokens, expected);
+
+  active = true;
+  tokens = element$.tokenfield('getTokens', active);
+  expected = [];
+  assert.deepEqual(tokens, expected);
+});
