@@ -2,6 +2,7 @@ import Ember from 'ember';
 import layout from '../templates/components/input-tokenfield';
 
 export default Ember.TextField.extend({
+
   layout: layout,
 
   classNames: ['form-control'],
@@ -29,7 +30,8 @@ export default Ember.TextField.extend({
     if ( this.showAutocompleteOnFocus ) {
       options.showAutocompleteOnFocus = true;
     }
-    if ( this.typeahead ) { options.typeahead = this.typeahead; }
+    var typeahead = this.get('typeahead');
+    if ( typeahead ) { options.typeahead = typeahead; }
     if ( this.createTokensOnBlur ) { 
       options.createTokensOnBlur = this.createTokensOnBlur;
     }
@@ -40,6 +42,9 @@ export default Ember.TextField.extend({
     this.get('element$').tokenfield(options);
   },
 
+  /*
+    Knows how to handle the autocmplete object if its a promise.
+  */
   _processAutocompleteObject: Ember.observer('autocomplete', function() {
     var autocomplete = this.get('autocomplete');
 
