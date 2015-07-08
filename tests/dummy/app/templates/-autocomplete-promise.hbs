@@ -1,16 +1,16 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Autocomplete with a promise
+  </div>
 
-<p><strong>Autocomplete with a promise</strong></p>
-
-<p>Promises can be used to update the autocomplete object used by jQuery UI.</p>
-
-<div class="panel panel-default">
   <div class="panel-body">
+    <p>Promises can be used to update the autocomplete object used by jQuery UI.</p>
     {{input-tokenfield value="banana,apple,watermelon" 
                        placeholder="Type something and hit enter"
                        autocomplete=autocompletePromise
                        showAutocompleteOnFocus=true}}
-  </div>
-  <div class="panel-footer">
+    <br>
+
     Controller
     <pre>// contribed example, this data is likely to come from ember-data
 autocompletePromise: Ember.computed({

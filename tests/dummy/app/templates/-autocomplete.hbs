@@ -1,16 +1,17 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Using jQuery UI Autocomplete
+  </div>
 
-<p>Create elegant taggable fields with copy/paste and keyboard support.</p>
-
-<p><strong>Using jQuery UI Autocomplete</strong></p>
-
-<div class="panel panel-default">
   <div class="panel-body">
+    <p>Create elegant taggable fields with copy/paste and keyboard support.</p>
+
     {{input-tokenfield value="red,green,blue" 
                        placeholder="Type something and hit enter"
                        autocomplete=autocomplete
                        showAutocompleteOnFocus=true}}
-  </div>
-  <div class="panel-footer">
+    <br>
+
     Controller
     <pre>autocomplete: {
   source: ['red','blue','green','yellow','violet','brown','purple','black','white'],

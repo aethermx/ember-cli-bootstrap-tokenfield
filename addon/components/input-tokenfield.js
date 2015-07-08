@@ -13,7 +13,8 @@ export default Ember.TextField.extend({
   },
 
   tokens: null, 
-  autocomplete: null, // handled by _processAutocompleteObject()
+
+  autocomplete: null,
 
   didInsertElement: function() {
     this._setElement$();
@@ -30,6 +31,7 @@ export default Ember.TextField.extend({
     if ( this.showAutocompleteOnFocus ) {
       options.showAutocompleteOnFocus = true;
     }
+
     var typeahead = this.get('typeahead');
     if ( typeahead ) { options.typeahead = typeahead; }
     if ( this.createTokensOnBlur ) { 
@@ -43,7 +45,7 @@ export default Ember.TextField.extend({
   },
 
   /*
-    Knows how to handle the autocmplete object if its a promise.
+    Knows how to handle the autocomplete object if its a promise.
   */
   _processAutocompleteObject: Ember.observer('autocomplete', function() {
     var autocomplete = this.get('autocomplete');
