@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-bootstrap-tokenfield",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Bootstrap Tokenfield for Ember CLI",
   "directories": {
     "doc": "doc",
