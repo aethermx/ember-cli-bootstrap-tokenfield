@@ -1,0 +1,34 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    Set tokens with a promise
+  </div>
+
+  <div class="panel-body">
+    <p>Promises can be used to set the current tokens.</p>
+    {{input-tokenfield tokens=tokensPromise 
+                       autocomplete=autocomplete
+                       placeholder="Type something and hit enter"}}
+    <br>
+
+    Controller
+    <pre>// contribed example, this data is likely to come from ember-data
+tokensPromise: Ember.computed(function() {
+  var tokens = [
+    {value: 1, label: 'one'},
+    {value: 2, label: 'two'},
+    {value: 3, label: 'three'}
+  ];
+
+  return new Ember.RSVP.Promise(function(resolve) {
+    Ember.run.later(function() {
+      resolve( tokens );
+    }, 3000); // simulate a 3 seconds delay 
+  });
+})</pre>
+
+    Template
+<pre>\{{input-tokenfield tokens=tokensPromise 
+                   autocomplete=autocomplete
+                   placeholder="Type something and hit enter"}}</pre>
+  </div>
+</div>

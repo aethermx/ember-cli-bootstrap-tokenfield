@@ -7,78 +7,94 @@ export default Ember.TextField.extend({
 
   classNames: ['form-control'],
 
-  _setElement$: function() {
-    var element$ = Ember.$('#' + this.get('elementId'));
-    this.set('element$', element$);
+  /*
+    Appends only truthy values that are not promises.
+  */
+  _appendOption: function(options, attributeName) {
+    let attrValue = this.get(attributeName);
+    if (attrValue && typeof attrValue.then !== 'function') {
+      options[attributeName] = attrValue;
+    }
+    return options;
   },
 
-  tokens: null, 
-
-  autocomplete: null,
+  _buildTokenfieldOptions: function() {
+    var options = {};
+    options = this._appendOption(options, 'limit');
+    options = this._appendOption(options, 'minLength');
+    options = this._appendOption(options, 'minWidth');
+    options = this._appendOption(options, 'showAutocompleteOnFocus');
+    options = this._appendOption(options, 'delimiter');
+    options = this._appendOption(options, 'beautify');
+    options = this._appendOption(options, 'inputType');
+    options = this._appendOption(options, 'createTokenOnBlur');
+    options = this._appendOption(options, 'typeahead');
+    options = this._appendOption(options, 'tokens');
+    options = this._appendOption(options, 'autocomplete');
+    return options;
+  },
 
   didInsertElement: function() {
-    this._setElement$();
+    let element$ = Ember.$('#' + this.get('elementId'));
+    this.set('element$', element$);
 
-    var tokens = this._processTokensObject();
-    var autocomplete = this._processAutocompleteObject();
+    var options = this._buildTokenfieldOptions();
 
-    var options = {};
-    if ( tokens ) { options.tokens = tokens; }
-    if ( this.limit ) { options.limit = this.limit; }
-    if ( this.minLength ) { options.minLength = this.minLength; }
-    if ( this.minWidth ) { options.minWidth = this.minWidth; }
-    if ( autocomplete ) { options.autocomplete = autocomplete; }
-    if ( this.showAutocompleteOnFocus ) {
-      options.showAutocompleteOnFocus = true;
-    }
+    element$.tokenfield(options);
 
-    var typeahead = this.get('typeahead');
-    if ( typeahead ) { options.typeahead = typeahead; }
-    if ( this.createTokensOnBlur ) { 
-      options.createTokensOnBlur = this.createTokensOnBlur;
-    }
-    if ( this.delimiter ) { options.delimiter = this.delimiter; }
-    if ( this.beautify ) { options.beautify = this.beautify; }
-    if ( this.inputType ) { options.inputType = this.inputType; }
-
-    this.get('element$').tokenfield(options);
+    this._consumeAutocompletePromise();
+    this._consumeTokensPromise();
   },
 
-  /*
-    Knows how to handle the autocomplete object if its a promise.
-  */
-  _processAutocompleteObject: Ember.observer('autocomplete', function() {
+  _consumeAutocompletePromise: function() {
     var autocomplete = this.get('autocomplete');
 
-    if ( ! autocomplete || typeof autocomplete.then !== 'function') {
-      return autocomplete;
+    if (!autocomplete || typeof autocomplete.then !== 'function') {
+      return; // nothing to do, value already passed in with the options object
     }
 
-    var _this = this;
-    autocomplete.then(function(resolvedAutocomplete) {
-      _this.get('element$')
-           .data('bs.tokenfield')
-           .$input.autocomplete(resolvedAutocomplete);
-    });
+    autocomplete.then(autocompleteValues => {
+      let element$ = this.get('element$');
+      if (element$) {
+        element$
+          .data('bs.tokenfield')
+          .$input.autocomplete(autocompleteValues);
+      }
 
-    return null;
+      this.set('autocomplete', autocompleteValues);
+    });
+  },
+
+  _observeAutocomplete: Ember.observer('autocomplete', function() {
+    this._consumeAutocompletePromise();
   }),
 
-  _processTokensObject: Ember.observer('tokens', 'tokens.[]', function() {
+  _consumeTokensPromise: function() {
     var tokens = this.get('tokens');
 
-    if ( ! tokens ) {
-      return;
+    if (!tokens || typeof tokens.then !== 'function') {
+      return; // nothing to do, value already passed in with the options object
     }
 
     // test for Ember.ArrayProxy
-    if ( typeof tokens.get('hasArrayObservers') === 'boolean') {
-      tokens = tokens.toArray();
+    /*
+    if ( tokens.get && typeof tokens.get('hasArrayObservers') === 'boolean') {
+      let tokensList = tokens.toArray();
+      element$.tokenfield('setTokens', tokensList);
     }
+    */
 
-    this.get('element$').tokenfield('setTokens', tokens);
-    
-    return tokens;
+    tokens.then(tokensList => {
+      let element$ = this.get('element$');
+      if (element$) {
+        element$.tokenfield('setTokens', tokensList);
+      }
+      this.set('tokens', tokensList);
+    });
+  },
+
+  _observeTokens: Ember.observer('tokens', function() {
+    this._consumeTokensPromise();
   })
 
 });

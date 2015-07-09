@@ -23,6 +23,20 @@ export default Ember.Controller.extend({
     });
   }),
 
+  tokensPromise: Ember.computed(function() {
+    var tokens = [
+      {value: 1, label: 'one'},
+      {value: 2, label: 'two'},
+      {value: 3, label: 'three'}
+    ];
+  
+    return new Ember.RSVP.Promise(function(resolve) {
+      Ember.run.later(function() {
+        resolve( tokens );
+      }, 3000); // simulate a 3 seconds delay 
+    });
+  }),
+
   typeahead: (function() {
     var engine = new Bloodhound({
       local: [{value: 'red'}, {value: 'blue'}, {value: 'green'} , 
