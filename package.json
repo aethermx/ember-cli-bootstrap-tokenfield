@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-bootstrap-tokenfield",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Bootstrap Tokenfield for Ember CLI",
   "directories": {
     "doc": "doc",
@@ -45,7 +45,6 @@
     "ember-cli-babel": "^5.0.0",
     "ember-cli-htmlbars": "^0.7.9"
   },
-  "main": "index.js",
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoURL": "http://aethermx.github.io/ember-cli-bootstrap-tokenfield"
