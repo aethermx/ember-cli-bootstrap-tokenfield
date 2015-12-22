@@ -52,7 +52,7 @@ export default Ember.TextField.extend({
     this._consumeTokensPromise();
   },
 
-  _createdToken: function () {
+  _createdToken: function ( ) {
     let tokens = this.get('element$').tokenfield('getTokens');
     this.set('tokens', tokens);
   },
