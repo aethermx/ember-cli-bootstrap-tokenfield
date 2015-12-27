@@ -27,7 +27,7 @@ export default Ember.TextField.extend({
     options = this._appendOption(options, 'delimiter');
     options = this._appendOption(options, 'beautify');
     options = this._appendOption(options, 'inputType');
-    options = this._appendOption(options, 'createTokensOnBlur');
+    options = this._appendOption(options, 'createTokenOnBlur');
     options = this._appendOption(options, 'typeahead');
     options = this._appendOption(options, 'tokens');
     options = this._appendOption(options, 'autocomplete');
