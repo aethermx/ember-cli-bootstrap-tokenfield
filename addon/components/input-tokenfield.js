@@ -27,7 +27,7 @@ export default Ember.TextField.extend({
     options = this._appendOption(options, 'delimiter');
     options = this._appendOption(options, 'beautify');
     options = this._appendOption(options, 'inputType');
-    options = this._appendOption(options, 'createTokensOnBlur');
+    options = this._appendOption(options, 'createTokenOnBlur');
     options = this._appendOption(options, 'typeahead');
     options = this._appendOption(options, 'tokens');
     options = this._appendOption(options, 'autocomplete');
@@ -40,10 +40,21 @@ export default Ember.TextField.extend({
 
     var options = this._buildTokenfieldOptions();
 
+    let context = this;
     element$.tokenfield(options);
 
+    element$
+      .on('tokenfield:createdtoken', function (e) {
+          context._createdToken(e);
+      });
+    this.set('element$', element$);
     this._consumeAutocompletePromise();
     this._consumeTokensPromise();
+  },
+
+  _createdToken: function ( ) {
+    let tokens = this.get('element$').tokenfield('getTokens');
+    this.set('tokens', tokens);
   },
 
   _consumeAutocompletePromise: function() {

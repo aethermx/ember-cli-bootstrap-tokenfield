@@ -8,11 +8,6 @@ A convenient component that wraps around Bootstrap Tokenfield.
 
 Examples: http://aethermx.github.io/ember-cli-bootstrap-tokenfield/
 
-Supported versions:
-
- * ember 1.12
- * ember 1.13.2
-
 ## Addon Install 
 
     ember install ember-cli-bootstrap-tokenfield
