@@ -42,6 +42,26 @@ test('tokenfield.getTokens', function(assert) {
   assert.deepEqual(tokens, expected);
 });
 
+test('listen to tokenfield:createdToken', function(assert) {
+  assert.expect(2);
+
+  var component = this.subject();
+  this.render();
+
+  var active = false;
+  var element$ = component.get('element$');
+  var tokens = element$.tokenfield('getTokens', active);
+  var expected = [];
+  assert.deepEqual(tokens, expected);
+
+  // fake typing in a token
+  element$.tokenfield('createToken', 'blue');
+
+  tokens = element$.tokenfield('getTokens', active);
+  expected = [{'label': 'blue', 'value': 'blue'}];
+  assert.deepEqual(tokens, expected);
+});
+
 test('_appendOption', function(assert) {
   assert.expect(3);
 

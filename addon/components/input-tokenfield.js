@@ -7,6 +7,8 @@ export default Ember.TextField.extend({
 
   classNames: ['form-control'],
 
+  tokens: null,
+
   /*
     Appends only truthy values that are not promises.
   */
@@ -40,21 +42,15 @@ export default Ember.TextField.extend({
 
     var options = this._buildTokenfieldOptions();
 
-    let context = this;
     element$.tokenfield(options);
 
-    element$
-        .on('tokenfield:createdtoken', function (e) {
-          context._createdToken(e);
-        });
+    element$.on('tokenfield:createdtoken', (/*ev*/) => {
+      let tokens = element$.tokenfield('getTokens');
+      this.set('tokens', tokens);
+    });
 
     this._consumeAutocompletePromise();
     this._consumeTokensPromise();
-  },
-
-  _createdToken: function ( ) {
-    let tokens = this.get('element$').tokenfield('getTokens');
-    this.set('tokens', tokens);
   },
 
   _consumeAutocompletePromise: function() {
