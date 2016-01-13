@@ -45,21 +45,17 @@ export default Ember.TextField.extend({
 
     element$
         .on('tokenfield:createdtoken', function (e) {
-          context._createdToken(e);
+          context._updatedToken(e);
         })
-      .on('tokenfield:removedtoken', function (e) {
-        context._removedToken(e);
-      });
+        .on('tokenfield:removedtoken', function (e) {
+          context._updatedToken(e);
+        });
 
     this._consumeAutocompletePromise();
     this._consumeTokensPromise();
   },
 
-  _createdToken: function ( ) {
-    let tokens = this.get('element$').tokenfield('getTokens');
-    this.set('tokens', tokens);
-  },
-  _removedToken: function ( ) {
+  _updatedToken: function ( ) {
     let tokens = this.get('element$').tokenfield('getTokens');
     this.set('tokens', tokens);
   },
